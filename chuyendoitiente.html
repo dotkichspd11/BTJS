@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Convert Price</title>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper__body">
+            <div class="convert__list">
+                <div class="convert__item">
+                    <p class="amount" id="amount">Amount</p>
+                    <input type="number" name="number" onkeyup="convertPrice()" id="number" placeholder="0" min="0">
+                </div>
+                <div class="convert__item">
+                    <p>From</p>
+                    <select name="convert1" id="convert1">
+                        <option value="VND">VND</option>
+                        <option value="USD">USD</option>
+                        <option value="Yen">Yen</option>
+                    </select>
+                </div>
+                <div class="convert__item">
+                    <p>To</p>
+                    <select name="convert2" id="convert2">
+                        <option value="VND">VND</option>
+                        <option value="USD">USD</option>
+                        <option value="Yen">Yen</option>
+                    </select>
+                </div>
+
+                
+            </div>
+            <p class="result" id="result"></p>
+        </div>
+    </div>
+</body>
+<script>
+    function convertPrice(){
+        var a = document.getElementById("number").value;
+        var cv1 = document.getElementById("convert1").value;
+        var cv2 = document.getElementById("convert2").value;
+        if(cv1 == cv2){
+            document.getElementById("result").innerHTML = a + cv2;
+        }
+        if(cv1 == "VND" && cv2 == "USD"){
+            document.getElementById("result").innerHTML = a/22752 + cv2;
+        }
+        if(cv1 == "VND" && cv2 == "Yen"){
+            document.getElementById("result").innerHTML = a/206 + cv2;
+        }
+        if(cv1 == "USD" && cv2 == "VND"){
+            document.getElementById("result").innerHTML = a*22752 + cv2;
+        }
+        if(cv1 == "USD" && cv2 == "Yen"){
+            document.getElementById("result").innerHTML = a*110 + cv2;
+        }
+        if(cv1 == "Yen" && cv2 == "VND"){
+            document.getElementById("result").innerHTML = a/206 + cv2;
+        }
+        if(cv1 == "Yen" && cv2 == "USD"){
+            document.getElementById("result").innerHTML = a/110 + cv2;
+        }
+    }
+</script>
+</html>

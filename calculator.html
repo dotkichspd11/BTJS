@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="wrapper">
+       <div class="calculator">
+            <div class="calculator__result">
+                <div class="calculator__history">
+                    <p class="calculator__history--value" id="history"></p>
+                </div>
+                <div class="calculator__output">
+                    <p class="calculator__output--value" id="output"></p>
+                </div>
+            </div>
+            <div class="calculator__keyboard">
+                <button class="operator" id="clear">C</button>
+                <button class="operator" id="backspace">DE</button>
+                <button class="operator" id="/">%</button>
+                <button class="operator">&#247</button>
+                <button class="number" id="7">7</button>
+                <button class="number" id="8">8</button>
+                <button class="number" id="9">9</button>
+                <button class="operator" id="*">&times;</button>
+                <button class="number" id="4">4</button>
+                <button class="number" id="5">5</button>
+                <button class="number" id="6">6</button>
+                <button class="operator" id="-">-</button>
+                <button class="number" id="1">1</button>
+                <button class="number" id="2">2</button>
+                <button class="number" id="3">3</button>
+                <button class="operator" id="+">+</button>
+                <button class="empty"></button>
+                <button class="number" id="0">0</button>
+                <button class="empty"></button>
+                <button class="operator" id="=">=</button>
+            </div>
+       </div>     
+    </div>
+</body>
+<script>
+    function getHistory(){
+        return document.getElementById('history').innerText;
+    }
+    function showHistory(num){
+        document.getElementById('history').innerText=num;
+    }
+    function getOutput(){
+        return document.getElementById('output').innerText;
+    }
+    function showOutput(num){
+        document.getElementById('output').innerText=num;
+    }
+    
+
+    var operator = document.getElementsByClassName('operator');
+    for(var i=0; i < operator.length;i++){
+        operator[i].addEventListener('click', function(){
+            if(this.id == "clear"){
+                showHistory("");
+                showOutput("");
+            }
+            else if(this.id == "backspace"){
+                var output = getOutput().toString();
+                if(output){
+                    output = output.substring(0,output.length-1);
+                    showOutput(output);
+                }
+            }
+            else {
+                var output = getOutput();
+                var history = getHistory();
+                if(output!= ""){
+                    output = getOutput();
+                    history = history + output;
+                    if(this.id == "="){
+                        var result = eval(history);
+                        showOutput(result);
+                        showHistory("");
+                    }else {
+                        history = history+this.id;
+                        showHistory(history);
+                        showOutput("");
+                    }
+                }
+            }
+        })
+    }
+    var number = document.getElementsByClassName('number');
+    for(var i=0; i < operator.length;i++){
+        number[i].addEventListener('click', function(){
+            var output = getOutput();
+            if(output != NaN){
+                output = output + this.id;
+                showOutput(output);
+            }
+        })
+    }
+</script>
+</html>

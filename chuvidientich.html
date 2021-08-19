@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Chu vi va Dien tich</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper__body">
+        <div class="list__hinh">
+            <ul class="select">
+                <li class=""> 
+                    <a href="#" class="hinhvuong" onclick="clickGeneral(this)">Hinh vuong</a>
+                </li>
+                <li class=""> 
+                    <a href="#" class="hinhtron" onclick="clickGeneral(this)">Hinh tron</a>
+                </li>
+                <li class=""> 
+                    <a href="#" class="hinhtamgiac" onclick="clickGeneral(this)">Hinh tam giac</a>
+                </li>
+                <li class=""> 
+                    <a href="#" class="hinhthang" onclick="clickGeneral(this)">Hinh thang</a>
+                </li>
+            </ul>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <div>
+            <div class="hinh hinhvuong" id="hinhvuong">
+                <label for="canhhinhvuong">Nhap kich thuoc canh</label>
+                <br>
+                <input type="number" id="canhhinhvuong" min="0"> 
+                
+                <button type="button" onclick="calVuong()">Tinh</button>
+            </div>
+            <div class="hinh hinhtron" id="hinhtron">
+                <label for="bankinh">Nhap ban kinh </label>
+                <br>
+                <input type="number" id="bankinh" min="0"> 
+                
+                <button type="button" onclick="calTron()">Tinh</button>
+            </div>
+            <div class="hinh hinhtamgiac" id="hinhtamgiac">
+                <label for="canhtamgiac1">Nhap kich thuoc canh 1</label>
+                <br>
+                <input type="number" id="canhtamgiac1" min="0"> 
+                <br>
+                <label for="canhtamgiac2">Nhap kich thuoc canh 2</label>
+                <br>
+                <input type="number" id="canhtamgiac2" min="0"> 
+                <br>
+                <label for="canhtamgiac3">Nhap kich thuoc canh 3</label>
+                <br>
+                <input type="number" id="canhtamgiac3" min="0"> 
+                <br>
+                <label for="canhday">Nhap kich thuoc canh day</label>
+                <br>
+                <input type="number" id="canhday" min="0"> 
+                <br>
+                <label for="chieucao">Nhap kich thuoc chieu cao</label>
+                <br>
+                <input type="number" id="chieucao" min="0"> 
+                
+                <button type="button" onclick="calTamgiac()">Tinh</button>
+            </div>
+        </div>
+        <div style="margin-left: 20px;">
+            <div class="hinh hinhthang" id="hinhthang">
+                <label for="canhthang1">Nhap kich thuoc canh 1</label>
+                <br>
+                <input type="number" id="canhthang1" min="0"> 
+                <br>
+                <label for="canhthang2">Nhap kich thuoc canh 2</label>
+                <br>
+                <input type="number" id="canhthang2" min="0"> 
+                <br>
+                <label for="canhthang3">Nhap kich thuoc canh 3</label>
+                <br>
+                <input type="number" id="canhthang3" min="0"> 
+                <br>
+                <label for="canhthang4">Nhap kich thuoc canh 4</label>
+                <br>
+                <input type="number" id="canhthang4" min="0"> 
+                <br>
+                <label for="chieucaothang">Nhap kich thuoc chieu cao</label>
+                <br>
+                <input type="number" id="chieucaothang" min="0">
+                
+                <button type="button" onclick="calThang()">Tinh</button>
+            </div>
+        </div>
+    </div>
+            <p style="margin-left: 30px;" id="chuvi"></p>
+            <p style="margin-left: 30px;" id="dientich"></p>
+               
+            
+        </div>
+    </div>
+</body>
+<script >
+    function clickGeneral(e) {
+        let className = e.getAttribute("class");
+        let idName = document.getElementById(className).setAttribute("class","active");
+        if(document.querySelector(idName) !== null){
+            document.querySelector(idName).classList.remove("active");
+        }
+        e.className = "active";
+       
+    }
+    function calVuong(){
+        var chv = document.getElementById("canhhinhvuong").value;
+        var cv = chv * 4;
+        var dt = chv * chv;
+        document.getElementById("chuvi").innerHTML = "Chu vi la &nbsp" + cv;
+        document.getElementById("dientich").innerHTML = "Chu vi la &nbsp"  + dt;
+    }
+    function calTron(){
+        var a = document.getElementById("bankinh").value;
+        var cv = a * 2 * Math.PI;
+        var dt = a * a * Math.PI;
+        document.getElementById("chuvi").innerHTML = "Chu vi la &nbsp"  + cv;
+        document.getElementById("dientich").innerHTML = "Dien tich la &nbsp" + dt;
+    }
+    function calTamgiac(){
+        var a1 = document.getElementById("canhtamgiac1").value;
+        var a2 = document.getElementById("canhtamgiac2").value;
+        var a3 = document.getElementById("canhtamgiac3").value;
+        var cd = document.getElementById("canhday").value;
+        var cc = document.getElementById("chieucao").value;
+        var cv = a1 + a2 + a3;
+        var dt = (cd * cc)/2;
+        document.getElementById("chuvi").innerHTML = "Chu vi la &nbsp" + cv;
+        document.getElementById("dientich").innerHTML = "Chu vi la &nbsp" + dt;
+    }
+    function calThang(){
+        var a1 = document.getElementById("canhthang1").value;
+        var a2 = document.getElementById("canhthang2").value;
+        var a3 = document.getElementById("canhthang3").value;
+        var a4 = document.getElementById("canhthang4").value;
+        var cc = document.getElementById("chieucao").value;
+        var cv = a1 + a2 + a3 + a4;
+        var dt = cc*(a1 * a2)/2;
+        document.getElementById("chuvi").innerHTML = "Chu vi la &nbsp" + cv;
+        document.getElementById("dientich").innerHTML = "Chu vi la &nbsp" + dt;
+    }
+</script>
+</html>
